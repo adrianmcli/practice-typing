@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { TypingComponent } from './typing/typing.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TypingComponent
   ],
   imports: [
     BrowserModule,
