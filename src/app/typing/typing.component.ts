@@ -5,9 +5,16 @@ import { Component, OnInit } from '@angular/core';
   template: `
     <div>{{phrase}}</div>
     <input type="text" [(ngModel)]="typedPhrase"/>
-    <div>{{typedPhrase}}</div>
+    <div class="result" [class.valid]="isCorrect()">{{typedPhrase}}</div>
   `,
-  styles: []
+  styles: [`
+    .result {
+      color: red;
+    }
+    .result.valid {
+      color: green;
+    }
+  `]
 })
 export class TypingComponent implements OnInit {
 
@@ -16,7 +23,11 @@ export class TypingComponent implements OnInit {
 
   constructor() {
     this.phrase = `git commit -m "hello world"`;
-    this.typedPhrase = `hey there`;
+    this.typedPhrase = `type the above string`;
+  }
+
+  isCorrect() {
+    return this.phrase === this.typedPhrase;
   }
 
   ngOnInit() {
