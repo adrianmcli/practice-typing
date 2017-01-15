@@ -4,7 +4,7 @@ import { NgRedux } from 'ng2-redux';
 export const ADD_PHRASE = 'ADD_PHRASE';
 
 @Injectable()
-export class PhraseActions {
+export class PhrasesActions {
   constructor(private redux: NgRedux<any>) {}
 
   addPhrase(phrase) {

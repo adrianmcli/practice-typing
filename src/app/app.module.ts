@@ -8,11 +8,13 @@ import { AppComponent } from './app.component';
 import { TypingComponent } from './typing/typing.component';
 
 import rootReducer from './reducers';
+import { PhrasesComponent } from './phrases/phrases.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TypingComponent,
+    PhrasesComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import typing from './typing/typing-reducers';
-import phrase from './typing/phrase-reducers';
+import phrases from './phrases/phrases-reducers';
 
 export default combineReducers({
   typing,
-  phrase,
+  phrases,
 });

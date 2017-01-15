@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { select } from 'ng2-redux';
-import { Observable } from 'rxjs';
-import { PhraseActions } from './phrase-actions';
-
 // TODO - use SM2 algo to choose what phrase to show next:
 //        https://www.supermemo.com/english/ol/sm2.htm
 // TODO - use Damerau-Levenshtein distance to calculate/indicator/quantify
@@ -12,17 +8,7 @@ import { PhraseActions } from './phrase-actions';
 
 @Component({
   selector: 'app-typing',
-  providers: [ PhraseActions ],
   template: `
-    <h2>Add Phrase</h2>
-    <input
-      type="text"
-      (keypress)="handleKeypress2($event)"
-      />
-    <h2>List of Phrases</h2>
-    <div *ngFor="let phrase of phrases$ | async">
-      {{ phrase }}
-    </div>
     <h2>Practice</h2>
     <button
       *ngIf="typingStart === false"
@@ -32,7 +18,7 @@ import { PhraseActions } from './phrase-actions';
     </button>
     <div>{{ getPhrase() }}</div>
     <input
-      type="text"\
+      type="text"
       [(ngModel)]="typedPhrase"
       (keypress)="handleKeypress($event)"
       />
@@ -54,11 +40,9 @@ export class TypingComponent implements OnInit {
   typedPhrase: string;
   typingStart: boolean;
 
-  @select('phrase') phrases$: Observable<string[]>;
 
-  constructor(
-    public phraseActions: PhraseActions,
-  ) {
+  constructor() {
+    this.phrases = ['test'];
     this.phraseIndex = 0;
     this.typedPhrase = `type the above string`;
     this.typingStart = false;
@@ -73,14 +57,6 @@ export class TypingComponent implements OnInit {
 
   getPhrase() {
     return this.phrases[this.phraseIndex];
-  }
-
-  handleKeypress2(e) {
-    if (e.code === `Enter`) {
-      console.log('adding phrase');
-      this.phraseActions.addPhrase(e.target.value);
-      e.target.value = ``;
-    }
   }
 
   handleKeypress(e) {
@@ -103,9 +79,6 @@ export class TypingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.phrases$.subscribe((data) => {
-      this.phrases = data;
-    });
   }
 
 }
