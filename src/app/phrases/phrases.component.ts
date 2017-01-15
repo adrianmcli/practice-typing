@@ -13,8 +13,11 @@ import { PhrasesActions } from './phrases-actions';
       type="text"
       (keypress)="handleKeypress($event)"
       />
-    <div *ngFor="let phrase of phrases$ | async">
-      {{ phrase }}
+    <div *ngFor="let phrase of phrases$ | async; let i = index">
+      <span>{{ phrase }}</span>
+      <button (click)="delete(i)">
+        X
+      </button>
     </div>
   `,
   styles: []
@@ -28,6 +31,10 @@ export class PhrasesComponent implements OnInit {
       this.actions.addPhrase(e.target.value);
       e.target.value = ``;
     }
+  }
+
+  delete(index) {
+    this.actions.removePhrase(index);
   }
 
   constructor(
