@@ -13,6 +13,7 @@ import { PracticeActions } from './practice-actions';
     <h3>Current Score: {{ score$ | async }}</h3>
     <div>{{ targetPhrase }}</div>
     <input
+      class="input"
       type="text"
       [(ngModel)]="typedPhrase"
       (keypress)="handleKeypress($event)"
@@ -26,6 +27,11 @@ import { PracticeActions } from './practice-actions';
     </div>
   `,
   styles: [`
+    .input {
+      font-size: 24px;
+      margin: 20px 0;
+      padding: 10px 6px;
+    }
     .result {
       color: red;
     }
