@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { select } from 'ng2-redux';
+import { Observable } from 'rxjs';
+import { CounterActions } from './typing-actions';
+
 // TODO - use SM2 algo to choose what phrase to show next:
 //        https://www.supermemo.com/english/ol/sm2.htm
 // TODO - use Damerau-Levenshtein distance to calculate/indicator/quantify
@@ -8,7 +12,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-typing',
+  providers: [ CounterActions ],
   template: `
+    <div>{{ counter$ | async }}</div>
+    <button (click)="actions.increment()">Increment</button>
     <h2>Add Phrase</h2>
     <input
       type="text"
@@ -51,7 +58,9 @@ export class TypingComponent implements OnInit {
   typedPhrase: string;
   typingStart: boolean;
 
-  constructor() {
+  @select('typing') counter$: Observable<number>;
+
+  constructor(public actions: CounterActions) {
     this.phrases = [
       `git commit -m "hello world"`,
       `git status`,
