@@ -10,6 +10,7 @@ import { PracticeActions } from './practice-actions';
   providers: [ PracticeActions ],
   template: `
     <h2>Practice Component</h2>
+    <h3>Current Score: {{ score$ | async }}</h3>
     <div>{{ targetPhrase }}</div>
     <input
       type="text"
@@ -43,6 +44,7 @@ export class PracticeComponent implements OnInit {
   targetPhrase: string;
 
   @select(state => state.phrases[state.practice.stage]) phrase$: Observable<string>;
+  @select(['practice', 'score']) score$: Observable<number>;
 
   constructor(public actions: PracticeActions) {
     this.typedPhrase = `type the above string`;
@@ -50,7 +52,8 @@ export class PracticeComponent implements OnInit {
 
   handleKeypress(e) {
     if (e.code === `Enter`) {
-      // this.actions.scoreEntry();
+      const score = this.isCorrect() ? 1 : 0;
+      this.actions.addScore(score);
       this.actions.nextPhrase();
       this.typedPhrase = ``;
     }

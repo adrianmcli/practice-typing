@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
 
 export const NEXT_PHRASE = 'NEXT_PHRASE';
+export const ADD_SCORE = 'ADD_SCORE';
 
 const randomIntInRange = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -22,5 +23,9 @@ export class PracticeActions {
     } while (nextStage === currentStage);
 
     this.redux.dispatch({ type: NEXT_PHRASE, stage: nextStage });
+  }
+
+  addScore(num) {
+    this.redux.dispatch({ type: ADD_SCORE, score: num });
   }
 }
