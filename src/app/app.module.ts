@@ -5,16 +5,16 @@ import { HttpModule } from '@angular/http';
 import { NgReduxModule, NgRedux, DevToolsExtension } from 'ng2-redux';
 
 import { AppComponent } from './app.component';
-import { TypingComponent } from './typing/typing.component';
 
 import rootReducer from './reducers';
 import { PhrasesComponent } from './phrases/phrases.component';
+import { PracticeComponent } from './practice/practice.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TypingComponent,
     PhrasesComponent,
+    PracticeComponent,
   ],
   imports: [
     BrowserModule,

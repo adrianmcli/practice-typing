@@ -8,7 +8,6 @@ export class PhrasesActions {
   constructor(private redux: NgRedux<any>) {}
 
   addPhrase(phrase) {
-    console.log('dispatching:', phrase);
     this.redux.dispatch({
       type: ADD_PHRASE,
       phrase,
