@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { select } from 'ng2-redux';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 import { PhrasesActions } from './phrases-actions';
 
