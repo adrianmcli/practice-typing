@@ -17,6 +17,10 @@
 .phrase:hover > .delete-btn {
   color: white;
 }
+.phrase:hover > .delete-btn:hover {
+  color: red;
+}
+
 .delete-btn {
   padding-left: 6px;
   color: rgba(0,0,0,0.1);

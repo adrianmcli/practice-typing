@@ -3,6 +3,7 @@ import { NgRedux } from 'ng2-redux';
 
 export const NEXT_PHRASE = 'NEXT_PHRASE';
 export const ADD_SCORE = 'ADD_SCORE';
+export const RESET_SCORE = 'RESET_SCORE';
 
 const randomIntInRange = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -27,5 +28,9 @@ export class PracticeActions {
 
   addScore(num) {
     this.redux.dispatch({ type: ADD_SCORE, score: num });
+  }
+
+  resetScore() {
+    this.redux.dispatch({ type: RESET_SCORE });
   }
 }

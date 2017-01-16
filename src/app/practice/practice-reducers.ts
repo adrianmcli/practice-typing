@@ -1,4 +1,4 @@
-import { NEXT_PHRASE, ADD_SCORE } from './practice-actions';
+import { NEXT_PHRASE, ADD_SCORE, RESET_SCORE } from './practice-actions';
 
 const initialState = {
   stage: 0,
@@ -13,6 +13,8 @@ export default function practice(state = initialState, action) {
     case ADD_SCORE:
       const newScoreState = { score: state.score + action.score };
       return Object.assign({}, state, newScoreState);
+    case RESET_SCORE:
+      return Object.assign({}, state, { score: 0 });
     default:
       return state;
   }
