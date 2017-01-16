@@ -10,20 +10,27 @@ import { PracticeActions } from './practice-actions';
   providers: [ PracticeActions ],
   template: `
     <h2>Practice Typing!</h2>
-    <h3>Current Score: {{ score$ | async }}</h3>
-    <div>{{ targetPhrase }}</div>
-    <input
-      class="input"
-      type="text"
-      [(ngModel)]="typedPhrase"
-      (keypress)="handleKeypress($event)"
-      />
-    <div
-      class="result"
-      [class.valid]="isValid()"
-      [class.correct]="isCorrect()"
-      >
-      {{ typedPhrase }}
+    <div [ngSwitch]="phrasesExist()">
+      <div *ngSwitchCase="true">
+        <h3>Current Score: {{ score$ | async }}</h3>
+        <div>{{ targetPhrase }}</div>
+        <input
+          class="input"
+          type="text"
+          [(ngModel)]="typedPhrase"
+          (keypress)="handleKeypress($event)"
+          />
+        <div
+          class="result"
+          [class.valid]="isValid()"
+          [class.correct]="isCorrect()"
+          >
+          {{ typedPhrase }}
+        </div>
+      </div>
+      <div *ngSwitchDefault>
+        <h1>Please add a phrase to the left</h1>
+      </div>
     </div>
   `,
   styles: [`
@@ -63,6 +70,10 @@ export class PracticeComponent implements OnInit {
       this.actions.nextPhrase();
       this.typedPhrase = ``;
     }
+  }
+
+  phrasesExist() {
+    return Boolean(this.targetPhrase) === true;
   }
 
   isValid() {

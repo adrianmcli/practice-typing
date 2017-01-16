@@ -1,6 +1,6 @@
 import { ADD_PHRASE, REMOVE_PHRASE } from './phrases-actions';
 
-export default function phrases(state = ['one', 'two', 'three'], action) {
+export default function phrases(state = [], action) {
   switch (action.type) {
     case ADD_PHRASE:
       return state.concat([action.phrase]);
