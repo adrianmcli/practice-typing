@@ -8,26 +8,34 @@ import { PhrasesActions } from './phrases-actions';
   selector: 'app-phrases',
   providers: [ PhrasesActions ],
   template: `
-    <h2>Add Phrase</h2>
+    <h2>Phrases</h2>
     <input
+      class="input"
       type="text"
       (keypress)="handleKeypress($event)"
+      placeholder="Add your phrases here"
       />
-    <div *ngFor="let phrase of phrases$ | async; let i = index">
+    <div
+      class="phrase"
+      *ngFor="let phrase of phrases$ | async; let i = index"
+      >
       <span>{{ phrase }}</span>
-      <button (click)="delete(i)">
-        X
-      </button>
+      <span
+        class="delete-btn"
+        (click)="delete(i)"
+        >
+        x
+      </span>
     </div>
   `,
-  styles: []
+  styleUrls: ['./phrases.component.css']
 })
 export class PhrasesComponent implements OnInit {
 
   @select('phrases') phrases$: Observable<string[]>;
 
   handleKeypress(e) {
-    if (e.code === `Enter`) {
+    if (e.keyCode === 13) {  // return key
       this.actions.addPhrase(e.target.value);
       e.target.value = ``;
     }

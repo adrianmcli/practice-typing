@@ -9,7 +9,7 @@ import { PracticeActions } from './practice-actions';
   selector: 'app-practice',
   providers: [ PracticeActions ],
   template: `
-    <h2>Practice Component</h2>
+    <h2>Practice Typing!</h2>
     <h3>Current Score: {{ score$ | async }}</h3>
     <div>{{ targetPhrase }}</div>
     <input
@@ -57,7 +57,7 @@ export class PracticeComponent implements OnInit {
   }
 
   handleKeypress(e) {
-    if (e.code === `Enter`) {
+    if (e.keyCode === 13) {
       const score = this.isCorrect() ? 1 : 0;
       this.actions.addScore(score);
       this.actions.nextPhrase();

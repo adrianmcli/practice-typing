@@ -11,13 +11,13 @@
 .phrases {
   color: rgba(255,255,255,0.9);
   background: linear-gradient(to bottom right, #ff00cc, #333399);
-  flex-grow: 1;
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
 
 .practice {
-  flex-grow: 2;
+  flex: 2;
   display: flex;
   flex-direction: column;
 }

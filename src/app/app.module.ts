@@ -34,8 +34,9 @@ export class AppModule {
     // add enhancers here
 
     // if (__DEVMODE__ && devTools.isEnabled()) {
+    if (devTools.isEnabled()) {
       enhancers = [ ...enhancers, devTools.enhancer() ];
-    // }
+    }
 
     const initialState = {};
 
